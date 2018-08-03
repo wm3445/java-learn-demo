@@ -1,5 +1,7 @@
 package thread;
 
+import java.util.HashMap;
+
 /**
  * @author wangmeng
  *
@@ -52,6 +54,5 @@ public class ThreadNoLockPrintOddEvenNumber {
         Thread thread2 = new Thread(evenThread);
         thread2.setName("Thread-2");
         thread2.start();
-
     }
 }
