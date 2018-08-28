@@ -2,9 +2,8 @@ package aop.staticproxy;
 
 /**
  * @author wangmeng
- *
+ * <p>
  * 静态代理
- *
  */
 public class App {
 

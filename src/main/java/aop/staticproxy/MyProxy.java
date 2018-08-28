@@ -20,12 +20,12 @@ public class MyProxy implements MyInterface {
     }
 
 
-    public void before(){
+    public void before() {
         System.out.println("sayHello before execute！");
 
     }
 
-    public void after(){
+    public void after() {
         System.out.println("sayHello after execute！");
     }
 }

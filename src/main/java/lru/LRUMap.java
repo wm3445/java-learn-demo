@@ -5,13 +5,12 @@ import java.util.Map;
 
 /**
  * @author wangmeng
- *
+ * <p>
  * 使用双向链表实现lru缓存
- *
+ * <p>
  * 思路如下：
  * 1.利用HashMap缓存数据
  * 2.利用双向链表每次添加，获取的时候将节点数据移动到头结点位置
- *
  */
 public class LRUMap<K, V> {
 

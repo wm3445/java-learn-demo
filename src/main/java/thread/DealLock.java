@@ -2,7 +2,7 @@ package thread;
 
 /**
  * @author wangmeng
- *
+ * <p>
  * 简单实现一个死锁程序
  */
 public class DealLock {
@@ -18,7 +18,7 @@ public class DealLock {
 
         @Override
         public void run() {
-            synchronized (DealLock.lock1){
+            synchronized (DealLock.lock1) {
                 System.out.println("lock1 获取到锁");
                 System.out.println("尝试获取锁 lock2");
                 try {
@@ -26,7 +26,7 @@ public class DealLock {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                synchronized (DealLock.lock2){
+                synchronized (DealLock.lock2) {
                     System.out.println("lock2 获取到锁 --- ");
                 }
             }
@@ -34,14 +34,14 @@ public class DealLock {
     }
 
 
-    static class Lock2 implements Runnable{
+    static class Lock2 implements Runnable {
 
         @Override
         public void run() {
-            synchronized (DealLock.lock2){
+            synchronized (DealLock.lock2) {
                 System.out.println("lock2 获取到锁");
                 System.out.println("尝试获取锁 lock1");
-                synchronized (DealLock.lock1){
+                synchronized (DealLock.lock1) {
                     System.out.println("lock1 获取到锁 ====");
                 }
             }

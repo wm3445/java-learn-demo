@@ -7,40 +7,40 @@ import java.util.Map;
 
 /**
  * @author wangmeng
- *
- * 利用LinkedMap实现LRU 
+ * <p>
+ * 利用LinkedMap实现LRU
  */
-public class LRULinkedMap<K,V> {
+public class LRULinkedMap<K, V> {
 
     /**
      * 最大缓存大小
      */
     private int cacheSize;
 
-    private LinkedHashMap<K,V> cacheMap ;
+    private LinkedHashMap<K, V> cacheMap;
 
 
     public LRULinkedMap(int cacheSize) {
         this.cacheSize = cacheSize;
 
-        cacheMap = new LinkedHashMap(16,0.75F,true){
+        cacheMap = new LinkedHashMap(16, 0.75F, true) {
             @Override
             protected boolean removeEldestEntry(Map.Entry eldest) {
-                if ((cacheSize + 1) == cacheMap.size()){
-                    return true ;
-                }else {
-                    return false ;
+                if ((cacheSize + 1) == cacheMap.size()) {
+                    return true;
+                } else {
+                    return false;
                 }
             }
         };
     }
 
-    public void put(K key,V value){
-        cacheMap.put(key,value) ;
+    public void put(K key, V value) {
+        cacheMap.put(key, value);
     }
 
-    public V get(K key){
-        return cacheMap.get(key) ;
+    public V get(K key) {
+        return cacheMap.get(key);
     }
 
 

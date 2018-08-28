@@ -2,7 +2,7 @@ package thread;
 
 /**
  * @author wangmeng
- *
+ * <p>
  * 利用线程间通讯来打印奇偶数
  */
 public class ThreadNotifyPrintOddEvenNumber {
@@ -18,10 +18,10 @@ public class ThreadNotifyPrintOddEvenNumber {
 
         @Override
         public void run() {
-            synchronized (ThreadNotifyPrintOddEvenNumber.class){
+            synchronized (ThreadNotifyPrintOddEvenNumber.class) {
                 while (number <= max) {
                     if (flag) {
-                        System.out.println(Thread.currentThread().getName() +"奇数线程打印 => " + number++);
+                        System.out.println(Thread.currentThread().getName() + "奇数线程打印 => " + number++);
                         flag = false;
                         ThreadNotifyPrintOddEvenNumber.class.notify();
                     } else {
@@ -42,10 +42,10 @@ public class ThreadNotifyPrintOddEvenNumber {
 
         @Override
         public void run() {
-            synchronized (ThreadNotifyPrintOddEvenNumber.class){
+            synchronized (ThreadNotifyPrintOddEvenNumber.class) {
                 while (number <= max) {
                     if (!flag) {
-                        System.out.println(Thread.currentThread().getName() +"偶数线程打印 => " + number++);
+                        System.out.println(Thread.currentThread().getName() + "偶数线程打印 => " + number++);
                         flag = true;
                         ThreadNotifyPrintOddEvenNumber.class.notify();
                     } else {

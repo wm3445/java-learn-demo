@@ -45,7 +45,7 @@ public class OrderLinkedList {
 
     public void deleteHead() {
         head = head.next;
-        size --;
+        size--;
     }
 
     @Override

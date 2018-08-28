@@ -2,7 +2,7 @@ package linked;
 
 /**
  * @author wangmeng
- *
+ * <p>
  * 双端链表
  */
 public class DoublePointLinkedList {

@@ -1,7 +1,5 @@
 package linked;
 
-import java.util.Objects;
-
 /**
  * @author wangmeng
  * <p>

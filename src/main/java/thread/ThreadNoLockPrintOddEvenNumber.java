@@ -1,10 +1,8 @@
 package thread;
 
-import java.util.HashMap;
-
 /**
  * @author wangmeng
- *
+ * <p>
  * 利用 volatile 所有用于volatile修饰的变量的修改 happens-before 变量的读取
  */
 public class ThreadNoLockPrintOddEvenNumber {
@@ -22,7 +20,7 @@ public class ThreadNoLockPrintOddEvenNumber {
         public void run() {
             while (number <= max) {
                 if (flag) {
-                    System.out.println(Thread.currentThread().getName() +"奇数线程打印 => " + number++);
+                    System.out.println(Thread.currentThread().getName() + "奇数线程打印 => " + number++);
                     flag = false;
                 }
             }
@@ -37,7 +35,7 @@ public class ThreadNoLockPrintOddEvenNumber {
         public void run() {
             while (number <= max) {
                 if (!flag) {
-                    System.out.println(Thread.currentThread().getName() +"偶数线程打印 => " + number++);
+                    System.out.println(Thread.currentThread().getName() + "偶数线程打印 => " + number++);
                     flag = true;
                 }
             }

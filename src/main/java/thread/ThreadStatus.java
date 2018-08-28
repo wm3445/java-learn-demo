@@ -24,7 +24,7 @@ public class ThreadStatus {
             thread.notifyAll();
             LockSupport.unpark(thread);
             // 线程进入阻塞状态
-            synchronized (ThreadStatus.class){
+            synchronized (ThreadStatus.class) {
 
             }
 
@@ -37,7 +37,6 @@ public class ThreadStatus {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
 
 
     }
