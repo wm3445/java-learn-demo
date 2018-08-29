@@ -3,6 +3,7 @@ package datastructure;
 
 /**
  * @author wangmeng
+ * 使用数组实现栈 并完成一个加减乘除的符号计算
  */
 public class TableStack<T> implements Stack<T> {
 
