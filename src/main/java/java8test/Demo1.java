@@ -23,10 +23,6 @@ public class Demo1 {
 
     List<Data> dataList;
 
-    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
-
-    private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-
     public Demo1(List<Data> dataList) {
         this.dataList = dataList;
     }
