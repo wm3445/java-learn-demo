@@ -2,6 +2,13 @@ package java8test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoField;
+import java.time.temporal.Temporal;
+import java.time.temporal.TemporalField;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Date;
@@ -16,6 +23,8 @@ public class Demo1 {
 
     List<Data> dataList;
 
+    private static DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private static SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
     public Demo1(List<Data> dataList) {
@@ -28,19 +37,18 @@ public class Demo1 {
      * @param dataList
      */
     static List<Data> test1(List<Data> dataList) {
-        try {
-            long start = sdf.parse("2018-01-01 00:00:00").getTime();
-            long end = sdf.parse("2018-12-31 23:59:59").getTime();
-            dataList = dataList.stream()
-                    .filter(e -> start <= e.getDate().getTime() && e.getDate().getTime() <= end)
-                    .sorted(Comparator.comparing(Data::getAmount))
-                    .collect(Collectors.toList());
 
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+
+        LocalDateTime startDateTime = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
+        LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 31, 23, 59, 59);
+        dataList = dataList.stream()
+                .filter(e -> startDateTime.compareTo(e.getDate()) <= 0 && endDateTime.compareTo(e.getDate()) >= 0)
+                .sorted(Comparator.comparing(Data::getAmount))
+                .collect(Collectors.toList());
+
         return dataList;
     }
+
 
     /**
      * 交易员都在哪些地方交易过
@@ -115,7 +123,7 @@ public class Demo1 {
         System.out.println("时间 | 姓名 | 工作地址 | 大学 | 金额");
         for (Data data : dataList) {
             System.out.println(
-                    sdf.format(data.getDate()) + " " + data.getName() + " " +
+                    data.getDate().toLocalDate() + " " + data.getName() + " " +
                             data.getAddress() + " " + data.getCollege() + " " +
                             data.getAmount()
             );
@@ -126,13 +134,13 @@ public class Demo1 {
     public static void main(String[] args) throws ParseException {
         String fenge = "-=-=-=-=-=-=-=-=-=-==-";
         List<Data> dataList = new ArrayList<>();
-        dataList.add(new Data(sdf.parse("2017-01-03 00:00:00"), 32.00, "上海", "清华", "jimi"));
-        dataList.add(new Data(sdf.parse("2018-02-03 00:00:00"), 64.00, "北京", "北大", "tom"));
-        dataList.add(new Data(sdf.parse("2018-03-03 00:00:00"), 20.00, "深圳", "农大", "wangmeng"));
-        dataList.add(new Data(sdf.parse("2018-04-03 00:00:00"), 120.00, "杭州", "工大", "wangmeng"));
-        dataList.add(new Data(sdf.parse("2018-05-03 00:00:00"), 230.00, "上海", "清华", "tom"));
-        dataList.add(new Data(sdf.parse("2018-06-03 00:00:00"), 230.00, "北京", "工大", "cherry"));
-        dataList.add(new Data(sdf.parse("2018-07-03 00:00:00"), 2000.00, "上海", "工大", "jimi"));
+        dataList.add(new Data(LocalDateTime.of(2018, 1, 1, 0, 0, 0), 32.00, "上海", "清华", "jimi"));
+        dataList.add(new Data(LocalDateTime.of(2018, 2, 3, 0, 0, 0), 64.00, "北京", "北大", "tom"));
+        dataList.add(new Data(LocalDateTime.of(2018, 3, 3, 0, 0, 0), 20.00, "深圳", "农大", "wangmeng"));
+        dataList.add(new Data(LocalDateTime.of(2018, 4, 3, 0, 0, 0), 120.00, "杭州", "工大", "wangmeng"));
+        dataList.add(new Data(LocalDateTime.of(2018, 5, 3, 0, 0, 0), 230.00, "上海", "清华", "tom"));
+        dataList.add(new Data(LocalDateTime.of(2018, 6, 3, 0, 0, 0), 230.00, "北京", "工大", "cherry"));
+        dataList.add(new Data(LocalDateTime.of(2018, 7, 3, 0, 0, 0), 2000.00, "上海", "工大", "jimi"));
         printList(Demo1.test1(dataList));
         System.out.println(fenge);
         for (String s : Demo1.test2(dataList)) {
@@ -156,7 +164,7 @@ public class Demo1 {
     static class Data {
 
 
-        private Date date;
+        private LocalDateTime date;
 
         private Double amount;
 
@@ -166,23 +174,39 @@ public class Demo1 {
 
         private String name;
 
-        public Data(Date date, Double amount) {
+        public Data(LocalDateTime date, Double amount) {
             this.date = date;
             this.amount = amount;
         }
 
-        public Data(Date date, Double amount, String address) {
+        public Data(LocalDateTime date, Double amount, String address) {
             this.date = date;
             this.amount = amount;
             this.address = address;
         }
 
-        public Data(Date date, Double amount, String address, String college, String name) {
+        public Data(LocalDateTime date, Double amount, String address, String college, String name) {
             this.date = date;
             this.amount = amount;
             this.address = address;
             this.college = college;
             this.name = name;
+        }
+
+        public LocalDateTime getDate() {
+            return date;
+        }
+
+        public void setDate(LocalDateTime date) {
+            this.date = date;
+        }
+
+        public Double getAmount() {
+            return amount;
+        }
+
+        public void setAmount(Double amount) {
+            this.amount = amount;
         }
 
         public String getAddress() {
@@ -208,23 +232,6 @@ public class Demo1 {
         public void setName(String name) {
             this.name = name;
         }
-
-        public Date getDate() {
-            return date;
-        }
-
-        public void setDate(Date date) {
-            this.date = date;
-        }
-
-        public Double getAmount() {
-            return amount;
-        }
-
-        public void setAmount(Double amount) {
-            this.amount = amount;
-        }
-
     }
 
 }

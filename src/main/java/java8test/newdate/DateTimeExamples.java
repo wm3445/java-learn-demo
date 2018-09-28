@@ -32,12 +32,7 @@ import java.util.Locale;
 
 public class DateTimeExamples {
 
-    private static final ThreadLocal<DateFormat> formatters = new ThreadLocal<DateFormat>() {
-        @Override
-        protected DateFormat initialValue() {
-            return new SimpleDateFormat("dd-MMM-yyyy");
-        }
-    };
+    private static final ThreadLocal<DateFormat> formatters = ThreadLocal.withInitial(() -> new SimpleDateFormat("dd-MMM-yyyy"));
 
     public static void main(String[] args) {
         useOldDate();
