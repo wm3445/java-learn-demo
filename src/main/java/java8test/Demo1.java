@@ -9,10 +9,8 @@ import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
 import java.time.temporal.TemporalField;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
+import java.util.concurrent.ConcurrentSkipListMap;
 import java.util.stream.Collectors;
 
 /**
@@ -33,7 +31,6 @@ public class Demo1 {
      * @param dataList
      */
     static List<Data> test1(List<Data> dataList) {
-
 
         LocalDateTime startDateTime = LocalDateTime.of(2018, 1, 1, 0, 0, 0);
         LocalDateTime endDateTime = LocalDateTime.of(2018, 12, 31, 23, 59, 59);
@@ -153,6 +150,7 @@ public class Demo1 {
         Demo1.test5(dataList);
         System.out.println(fenge);
         System.out.println(Demo1.test6(dataList));
+
 
     }
 

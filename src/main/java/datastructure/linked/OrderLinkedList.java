@@ -1,4 +1,4 @@
-package linked;
+package datastructure.linked;
 
 /**
  * @author wangmeng

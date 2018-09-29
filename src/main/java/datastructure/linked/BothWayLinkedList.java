@@ -1,12 +1,11 @@
-package linked;
+package datastructure.linked;
 
 /**
  * @author wangmeng
  * <p>
- * 双端链表
+ * 双向链表
  */
-public class DoublePointLinkedList {
-
+public class BothWayLinkedList {
 
     private int size;
 
@@ -14,19 +13,24 @@ public class DoublePointLinkedList {
 
     private Node tail;
 
+
+    public BothWayLinkedList() {
+        size = 0;
+        head = null;
+        tail = null;
+
+    }
+
+
     private class Node {
+
         Object value;
-        Node next;
+        private Node next;
+        private Node prev;
 
         public Node(Object value) {
             this.value = value;
         }
-    }
-
-    public DoublePointLinkedList() {
-        size = 0;
-        head = null;
-        tail = null;
     }
 
     public void addHead(Object value) {
@@ -34,12 +38,12 @@ public class DoublePointLinkedList {
         if (size == 0) {
             head = node;
             tail = node;
-            size++;
         } else {
+            head.prev = node;
             node.next = head;
             head = node;
-            size++;
         }
+        size++;
     }
 
     public void addTail(Object value) {
@@ -47,27 +51,32 @@ public class DoublePointLinkedList {
         if (size == 0) {
             head = node;
             tail = node;
-            size++;
         } else {
+            node.prev = tail;
             tail.next = node;
             tail = node;
-            size++;
         }
+        size++;
     }
 
     public void deleteHead() {
         if (size == 0) {
             return;
         }
-
-        if (head.next != null) {
-            head = head.next;
-        } else {
-            head = null;
-            tail = null;
-        }
+        head = head.next;
+        head.prev = null;
         size--;
     }
+
+    public void deleteTail() {
+        if (size == 0) {
+            return;
+        }
+        tail = tail.prev;
+        tail.next = null;
+        size--;
+    }
+
 
     @Override
     public String toString() {
@@ -91,15 +100,20 @@ public class DoublePointLinkedList {
     }
 
     public static void main(String[] args) {
-        DoublePointLinkedList pointLinkedList = new DoublePointLinkedList();
-        pointLinkedList.addHead(1);
-        pointLinkedList.addHead(2);
-        pointLinkedList.addHead(3);
-        System.out.println(pointLinkedList.toString());
-        pointLinkedList.addTail(4);
-        System.out.println(pointLinkedList.toString());
-        pointLinkedList.deleteHead();
-        System.out.println(pointLinkedList.toString());
+        BothWayLinkedList bothWayLinkedList = new BothWayLinkedList();
+        bothWayLinkedList.addHead(1);
+        bothWayLinkedList.addHead(2);
+        bothWayLinkedList.addHead(3);
+        bothWayLinkedList.addHead(4);
+        System.out.println(bothWayLinkedList.toString());
+        bothWayLinkedList.addTail(5);
+        bothWayLinkedList.addTail(6);
+        System.out.println(bothWayLinkedList.toString());
+        bothWayLinkedList.deleteHead();
+        System.out.println(bothWayLinkedList.toString());
+        bothWayLinkedList.deleteTail();
+        System.out.println(bothWayLinkedList.toString());
+
 
     }
 }

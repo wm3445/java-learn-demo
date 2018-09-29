@@ -1,4 +1,4 @@
-package lru;
+package algorithm.lru;
 
 import java.util.ArrayList;
 import java.util.Collection;
