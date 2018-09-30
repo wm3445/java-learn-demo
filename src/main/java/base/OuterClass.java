@@ -7,33 +7,23 @@ package base;
 public class OuterClass {
 
     private OuterClass() {
-
         System.out.println("OuterClass init");
     }
 
-
-    class InnerClass {
+    class InnerClass extends InnerClass2 {
 
         InnerClass() {
             System.out.println("InnerClass init");
         }
-
-        int size = 100;
-
-
     }
 
     static class InnerClass2 {
-
         static {
             System.out.println("InnerClass2 static ");
         }
-
         InnerClass2() {
             System.out.println("InnerClass2 init ");
         }
-
-        int size = 200;
     }
 
     public void test() {
@@ -50,9 +40,9 @@ public class OuterClass {
         OuterClass outerClass = new OuterClass();
         // 非静态内部类需要外部类对象new
         InnerClass innerClass = outerClass.new InnerClass();
-        outerClass.test();
+        // outerClass.test();
         // 可以直接new静态内部类
-        InnerClass2 innerClass22 = new InnerClass2();
+        // InnerClass2 innerClass22 = new InnerClass2();
     }
 }
 

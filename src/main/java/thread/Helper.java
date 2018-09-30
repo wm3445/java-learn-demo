@@ -6,7 +6,11 @@ package thread;
  */
 public class Helper {
 
-    public String help(){
+    Helper() {
+        System.out.println("Helper init");
+    }
+
+    public String help() {
         return "help !!!";
     }
 }
