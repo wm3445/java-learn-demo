@@ -14,5 +14,11 @@ public class DoubleCheckedLocking2 {
         return HelperContainer.helper;
     }
 
+    public static void main(String[] args) {
+        DoubleCheckedLocking2 doubleCheckedLocking2 = new DoubleCheckedLocking2();
+        Helper helper = doubleCheckedLocking2.getHelper();
+        helper.help();
+    }
+
 
 }
