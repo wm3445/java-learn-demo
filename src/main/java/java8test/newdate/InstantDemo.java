@@ -1,6 +1,7 @@
 package java8test.newdate;
 
 import java.time.Instant;
+import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @Author: wangmeng
@@ -16,6 +17,9 @@ public class InstantDemo {
         System.out.println(Instant.ofEpochSecond(4, -1_000_000_000));
 
         System.out.println("当前时间戳:" + Instant.now());
+
+        System.out.println(Instant.MIN);
+
     }
 
     public static void main(String[] args) {
