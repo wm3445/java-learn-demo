@@ -10,7 +10,7 @@ import java.time.temporal.*;
  */
 public class NextWorkingDayUtil {
 
-    public static Temporal nextWorkingDay(){
+    public static Temporal nextWorkingDay() {
 
         TemporalAdjuster temporalAdjuster = TemporalAdjusters.ofDateAdjuster(temporal -> {
             DayOfWeek dow = DayOfWeek.of(temporal.get(ChronoField.DAY_OF_WEEK));
@@ -19,7 +19,8 @@ public class NextWorkingDayUtil {
                 dayToAdd = 3;
             } else if (dow == DayOfWeek.SATURDAY) {
                 dayToAdd = 2;
-            }return temporal.plus(dayToAdd, ChronoUnit.DAYS);
+            }
+            return temporal.plus(dayToAdd, ChronoUnit.DAYS);
 
         });
         return LocalDate.now().with(temporalAdjuster);

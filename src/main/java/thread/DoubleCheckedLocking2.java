@@ -15,6 +15,7 @@ public class DoubleCheckedLocking2 {
         HelperContainer() {
             System.out.println("HelperContainer init ");
         }
+
         private static Helper helper = new Helper();
     }
 

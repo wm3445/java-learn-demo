@@ -16,6 +16,7 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
 
     /**
      * 创建集合操作
+     *
      * @return
      */
     @Override
@@ -25,6 +26,7 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
 
     /**
      * 累积 遍历 过 的 项目， 原位 修改 累加器
+     *
      * @return
      */
     @Override
@@ -34,6 +36,7 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
 
     /**
      * 将每个累加器组合在一起
+     *
      * @return
      */
     @Override
@@ -46,6 +49,7 @@ public class ToListCollector<T> implements Collector<T, List<T>, List<T>> {
 
     /**
      * 恒等函数
+     *
      * @return
      */
     @Override

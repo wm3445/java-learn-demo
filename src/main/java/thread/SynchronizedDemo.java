@@ -65,15 +65,15 @@ public class SynchronizedDemo {
         }
     }
 
-    void run6(){
+    void run6() {
         synchronized (SynchronizedDemo.class) {
             try {
                 Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            System.out.println(num++ +" num");
-            synchronized (this){
+            System.out.println(num++ + " num");
+            synchronized (this) {
                 System.out.println(count++ + " count");
             }
         }
@@ -147,7 +147,7 @@ public class SynchronizedDemo {
         //test4();
 
         //锁住
-       // test5();
+        // test5();
 
         test6();
     }

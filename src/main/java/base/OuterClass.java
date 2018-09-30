@@ -21,6 +21,7 @@ public class OuterClass {
         static {
             System.out.println("InnerClass2 static ");
         }
+
         InnerClass2() {
             System.out.println("InnerClass2 init ");
         }

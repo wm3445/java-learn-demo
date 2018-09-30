@@ -1,7 +1,6 @@
 package java8test.newdate;
 
 import java.time.Instant;
-import java.util.concurrent.ThreadLocalRandom;
 
 /**
  * @Author: wangmeng

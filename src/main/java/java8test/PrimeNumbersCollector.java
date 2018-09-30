@@ -80,7 +80,7 @@ public class PrimeNumbersCollector implements Collector<Integer, Map<Boolean, Li
 
     public static Map<Boolean, List<Integer>> partitionPrimes(int n) {
         return IntStream.rangeClosed(2, n).boxed()
-                .collect(Collectors.partitioningBy(candidate -> isPrime(candidate)));
+                .collect(Collectors.partitioningBy(PrimeNumbersCollector::isPrime));
     }
 
     public static void main(String[] args) {

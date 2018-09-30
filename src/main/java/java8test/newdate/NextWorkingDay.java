@@ -33,7 +33,7 @@ public class NextWorkingDay implements TemporalAdjuster {
 
     public static void main(String[] args) {
         LocalDate now = LocalDate.now();
-        LocalDate with = now.with(new NextWorkingDay(LocalDate.of(2018,9,27)));
+        LocalDate with = now.with(new NextWorkingDay(LocalDate.of(2018, 9, 27)));
         System.out.println(with);
     }
 }

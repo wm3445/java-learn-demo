@@ -1,6 +1,5 @@
 package java8test.newdate;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 /**

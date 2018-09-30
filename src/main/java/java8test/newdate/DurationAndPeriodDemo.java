@@ -1,7 +1,6 @@
 package java8test.newdate;
 
 import java.time.Duration;
-import java.time.Instant;
 import java.time.Period;
 import java.time.temporal.ChronoUnit;
 

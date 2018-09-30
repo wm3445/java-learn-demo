@@ -1,9 +1,8 @@
 package classload;
 
-import java.io.*;
+import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.net.URLClassLoader;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -14,11 +13,9 @@ import java.nio.file.Paths;
 public class MyClassLoader extends ClassLoader {
 
 
-
-
     @Override
     protected Class<?> findClass(String name) {
-        String myPath = "file:////Users/wangmeng/IdeaProjects/java-learn-demo/target/classes/" + name.replace(".","/") + ".class";
+        String myPath = "file:////Users/wangmeng/IdeaProjects/java-learn-demo/target/classes/" + name.replace(".", "/") + ".class";
         System.out.println(myPath);
         byte[] cLassBytes = null;
         Path path = null;
@@ -34,7 +31,7 @@ public class MyClassLoader extends ClassLoader {
 
     public static void main(String[] args) {
         MyClassLoader myClassLoader = new MyClassLoader();
-        Class<?> appClass = myClassLoader.findClass("classload.App");
+        Class<?> appClass = myClassLoader.findClass("classload.Main");
         System.out.println(appClass.getClassLoader());
         System.out.println(appClass == App.class);
 
