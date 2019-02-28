@@ -15,8 +15,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import static java.time.temporal.TemporalAdjusters.lastDayOfMonth;
-import static java.time.temporal.TemporalAdjusters.nextOrSame;
+import static java.time.temporal.TemporalAdjusters.*;
 
 
 /**
@@ -130,6 +129,14 @@ public class DateTimeExamples {
         }
     }
 
+    public static class PreviousDay implements TemporalAdjuster{
+
+        @Override
+        public Temporal adjustInto(Temporal temporal) {
+            return temporal.minus(0,ChronoUnit.DAYS);
+        }
+    }
+
     private static void useDateFormatter() {
         LocalDate date = LocalDate.of(2014, 3, 18);
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
@@ -149,6 +156,19 @@ public class DateTimeExamples {
                 .toFormatter(Locale.ITALIAN);
 
         System.out.println(date.format(complexFormatter));
+
+        System.out.println("-=-=-=-=-=-=-=-=-");
+
+        LocalDate with = LocalDate.now().with(new PreviousDay());
+        System.out.println(with);
+
+
+        System.out.println("-=-=-=-=-=-=-=-=-");
+
+
+        LocalDate with1 = LocalDate.now().with(firstDayOfYear());
+        System.out.println(with1);
+
     }
 
 }

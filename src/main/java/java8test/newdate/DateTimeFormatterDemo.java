@@ -1,9 +1,11 @@
 package java8test.newdate;
 
-import java.time.LocalDate;
+import java.text.SimpleDateFormat;
+import java.time.*;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeFormatterBuilder;
 import java.time.temporal.ChronoField;
+import java.util.Date;
 import java.util.Locale;
 
 /**
@@ -34,5 +36,38 @@ public class DateTimeFormatterDemo {
         System.out.println(format);
 
 
+        DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
+        String format1 = formatter1.format(LocalDateTime.now());
+        System.out.println(format1);
+
+        System.out.println("-=-=-=-=getLastUpdate start-=-=-=-=-");
+
+        String tokyoDate = "20190224";
+        String tokyoTime = "23:59:34";
+        Date lastUpdate = getLastUpdate(tokyoDate, tokyoTime);
+        System.out.println(lastUpdate);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format2 = sdf.format(lastUpdate);
+        System.out.println(format2);
+        System.out.println("--=-=-=-=-getLastUpdate end");
+
+
+    }
+
+    private static Date getLastUpdate(String tokyoDate, String tokyoTime) {
+        LocalTime localTime = getTokyoTime(tokyoTime);
+        LocalDate localDate = LocalDate.from(DateTimeFormatter.ofPattern("yyyyMMdd").parse(tokyoDate));
+        LocalDateTime of = LocalDateTime.of(localDate, localTime);
+        ZoneId zone = ZoneId.systemDefault();
+        Instant instant = of.atZone(zone).toInstant();
+        return Date.from(instant);
+    }
+
+    private static LocalTime getTokyoTime(String tokyoTime) {
+        String[] split = tokyoTime.split(":");
+        int hour = Integer.parseInt(split[0]);
+        int minute = Integer.parseInt(split[1]);
+        int second = Integer.parseInt(split[2]);
+        return LocalTime.of(hour, minute, second);
     }
 }

@@ -1,6 +1,10 @@
 package java8test.newdate;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 
@@ -36,12 +40,31 @@ public class LocalDateDemo {
         System.out.println(date);
         LocalDate localDate = date.withYear(2011);
         System.out.println(date + "   " + localDate);
+        LocalDate now = LocalDate.now();
+        String yyyyMMdd = LocalDate.of(now.getYear(), now.getMonth(), 8)
+                .format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+        System.out.println(yyyyMMdd);
     }
+
+    /**
+     * 时区
+     */
+    public void test3(){
+
+        LocalDateTime now = LocalDateTime.now(ZoneId.of("Asia/Tokyo"));
+        LocalDateTime localDateTime = now.minusHours(1);
+
+
+    }
+
 
     public static void main(String[] args) {
         LocalDateDemo dateDemo = new LocalDateDemo();
         dateDemo.test();
         System.out.println("-=-=-=-=-=-=-=-=-");
         dateDemo.test2();
+        System.out.println("-=-=-=-=-=-=-=-=-");
+        dateDemo.test3();
+
     }
 }

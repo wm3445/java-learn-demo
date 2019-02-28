@@ -16,6 +16,8 @@ public class AtomicPerformanceTest {
         //testAtomicLong();
         System.out.println("-=-=-=-=-=-=-=--=-=");
         // testLongAdder();
+        TestPerformance.execute(AtomicPerformanceTest::testLongAdder);
+
     }
 
     public static long testAtomicLong() {
