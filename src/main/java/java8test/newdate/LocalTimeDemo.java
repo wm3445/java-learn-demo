@@ -24,6 +24,7 @@ public class LocalTimeDemo {
         System.out.println(time.getSecond());
         System.out.println("纳秒：" + time.getNano());
         System.out.println("毫秒：" + time.getNano() / 1_000_000);
+        System.out.println("秒：" + time.getNano() / 1_000_000_000);
 
         ZonedDateTime now = ZonedDateTime.now(ZoneId.of("Asia/Tokyo"));
         String format = now.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));

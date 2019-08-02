@@ -28,6 +28,7 @@ public class ConnectHandler implements Runnable {
             while ((len = inputStream.read(bytes)) != -1) {
                 sb.append(new String(bytes, 0, len, "UTF-8"));
             }
+            logger.info("当前线程 =  "+Thread.currentThread().getName());
             System.out.println("get message from client: " + sb);
             inputStream.close();
 

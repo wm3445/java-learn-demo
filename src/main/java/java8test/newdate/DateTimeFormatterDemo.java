@@ -25,16 +25,15 @@ public class DateTimeFormatterDemo {
         System.out.println("-=-=-=-=-=-=-=-=-");
 
         DateTimeFormatter italianFormatter = new DateTimeFormatterBuilder()
-                .appendText(ChronoField.DAY_OF_WEEK)
-                .appendLiteral(".  ")
-                .appendText(ChronoField.MONTH_OF_YEAR)
-                .appendLiteral(" ")
-                .appendText(ChronoField.YEAR)
-                .parseCaseInsensitive()
-                .toFormatter(Locale.CHINA);
+            .appendText(ChronoField.DAY_OF_WEEK)
+            .appendLiteral(".  ")
+            .appendText(ChronoField.MONTH_OF_YEAR)
+            .appendLiteral(" ")
+            .appendText(ChronoField.YEAR)
+            .parseCaseInsensitive()
+            .toFormatter(Locale.CHINA);
         String format = date1.format(italianFormatter);
         System.out.println(format);
-
 
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         String format1 = formatter1.format(LocalDateTime.now());
@@ -51,6 +50,13 @@ public class DateTimeFormatterDemo {
         System.out.println(format2);
         System.out.println("--=-=-=-=-getLastUpdate end");
 
+        LocalDate startDate = LocalDate.parse("2019-05-05", DateTimeFormatter.ISO_LOCAL_DATE);
+
+        LocalDateTime localDateTime= LocalDateTime.parse("2019-05-05T23:59:59", DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+        System.out.println(startDate);
+        System.out.println(localDateTime);
+
+        System.out.println(DateTimeFormatter.BASIC_ISO_DATE.toString());
 
     }
 

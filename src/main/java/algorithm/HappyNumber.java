@@ -56,5 +56,9 @@ public class HappyNumber {
         System.out.println("快乐数字 ？ " + happyNumber.isHappy(11));
         System.out.println("快乐数字 ？ " + happyNumber.isHappy(37));
 
+        StringBuilder sb = new StringBuilder().append("a").append("b").append("c");
+
     }
+
+
 }

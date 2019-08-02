@@ -2,6 +2,7 @@ package java8test.newdate;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.ChronoField;
 import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
@@ -32,5 +33,11 @@ public class NextWorkingDayOther implements TemporalAdjuster {
         LocalDate now = LocalDate.now();
         LocalDate with = now.with(new NextWorkingDayOther());
         System.out.println(with);
+
+        LocalDate t2 = LocalDate.of(2019,7,15);
+        for (int i = 0; i < 2; i++) {
+            t2 =  t2.with(new NextWorkingDayOther());
+        }
+        System.out.println(t2);
     }
 }

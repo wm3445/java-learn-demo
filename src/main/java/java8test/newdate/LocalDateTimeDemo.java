@@ -1,6 +1,9 @@
 package java8test.newdate;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
+import java.time.ZoneOffset;
 
 /**
  * @Author: wangmeng
@@ -12,7 +15,11 @@ public class LocalDateTimeDemo {
 
     public void test() {
         LocalDateTime now = LocalDateTime.now();
-        System.out.println(now);
+        long l = LocalDateTime.of(LocalDate.now(), LocalTime.of(23, 59, 59)).toEpochSecond(ZoneOffset.of("+8"));
+        long l1 = now.toEpochSecond(ZoneOffset.of("+8"));
+        long a =  l - l1;
+        System.out.println(a);
+
 
     }
 

@@ -11,4 +11,9 @@ public class App {
     public void setName(String name) {
         this.name = name;
     }
+
+    public static void main(String[] args) {
+        String property = System.getProperty("user.dir");
+        System.out.println(property);
+    }
 }

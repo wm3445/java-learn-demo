@@ -36,7 +36,11 @@ public class SocketClient {
     }
 
     public static void main(String[] args) {
-        SocketClient socketClient = new SocketClient("127.0.0.1", 9000);
-        socketClient.connect();
+
+        for (int i = 0; i < 10; i++) {
+            SocketClient socketClient = new SocketClient("127.0.0.1", 9000);
+            socketClient.connect();
+        }
+
     }
 }

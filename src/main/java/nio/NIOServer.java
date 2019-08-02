@@ -10,6 +10,7 @@ import java.nio.channels.SelectionKey;
 import java.nio.channels.Selector;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -45,6 +46,7 @@ public class NIOServer {
             socketChannel.configureBlocking(false);
             socketChannel.register(selector, SelectionKey.OP_ACCEPT);
             System.out.println("Server started .... port:9000 等待客户端连接！");
+            System.out.println(Thread.currentThread().getName());
             while (!Thread.currentThread().isInterrupted()) {
                 selector.select();
                 Set<SelectionKey> selectionKeys = selector.selectedKeys();
@@ -78,7 +80,7 @@ public class NIOServer {
         public void handleAccept(SelectionKey key) throws IOException {
             ServerSocketChannel serverSocketChannel = (ServerSocketChannel) key.channel();
             SocketChannel socketChannel = serverSocketChannel.accept();
-            logger.info("Server: accept client socket " + socketChannel);
+            logger.info("Server: accept client socket " + socketChannel +"  " +Thread.currentThread().getName());
             socketChannel.configureBlocking(false);
             socketChannel.register(key.selector(), SelectionKey.OP_READ);
         }
@@ -91,8 +93,8 @@ public class NIOServer {
                 if (readBytes > 0) {
                     logger.info("Server: readBytes = " + readBytes);
                     logger.info("Server: data = " + new String(byteBuffer.array(), 0, readBytes));
-                    byteBuffer.flip();
-                    socketChannel.write(byteBuffer);
+                    // 发送消息给客户端
+                    socketChannel.write(ByteBuffer.wrap("Server: msg".getBytes(StandardCharsets.UTF_8)));
                     break;
                 }
             }
@@ -100,7 +102,10 @@ public class NIOServer {
         }
 
         public void handleWrite(SelectionKey key) throws IOException {
+
             ByteBuffer byteBuffer = (ByteBuffer) key.attachment();
+            logger.info("Server: writeBytes = " + getString(byteBuffer));
+
             byteBuffer.flip();
             SocketChannel socketChannel = (SocketChannel) key.channel();
             socketChannel.write(byteBuffer);
@@ -132,7 +137,7 @@ public class NIOServer {
     }
 
     public static void main(String[] args) {
-        NIOServer nioServer = new NIOServer(9000);
+        NIOServer nioServer = new NIOServer(9001);
         nioServer.start();
     }
 

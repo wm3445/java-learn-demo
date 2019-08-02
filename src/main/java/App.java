@@ -1,3 +1,5 @@
+import org.jetbrains.annotations.Contract;
+
 import java.math.BigDecimal;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -176,6 +178,7 @@ public class App {
         }
 
 
+
     }
 
     static class User {
@@ -258,6 +261,14 @@ public class App {
             }
         }
         return string;
+    }
+
+
+    @Contract(pure = true)
+    private int pure(){
+
+        return 1;
+
     }
 
 }
